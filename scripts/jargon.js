@@ -134,4 +134,3 @@ module.exports = function(robot) {
     msg.send(sentence);
   });
 }
-

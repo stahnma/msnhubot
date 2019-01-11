@@ -2,7 +2,7 @@
 SHELL:=/bin/bash
 PATH:=node_modules/.bin:node_modules/hubot/node_modules/.bin:$(PATH)
 ENVFILE:=environment
-COFFEE:=node_modules/hubot/node_modules/.bin/coffee
+COFFEE:=node_modules/.bin/coffee
 
 # Standard Variables
 SYSCONFDIR=$(PREFIX)/etc
@@ -34,7 +34,7 @@ test: node_modules syntax unit
   # Currently, a secrets file isn't needed for tests.
 
 unit:
-	PATH=$(PATH) . $(ENVFILE) > /dev/null && test -d $${HUBOT_GIT_HOME} || HUBOT_GIT_HOME=$(shell pwd) &&  mocha --compilers "coffee:coffee-script/register" --require coffee-script/register test/*.coffee
+	PATH=$(PATH) . $(ENVFILE) > /dev/null && test -d $${HUBOT_GIT_HOME} || HUBOT_GIT_HOME=$(shell pwd) &&  mocha --require coffeescript/register test/*.{coffee,js}
 
 syntax: node_modules
 	PATH=$(PATH) . $(ENVFILE) > /dev/null  && $(COFFEE) node_modules/hubot/bin/hubot -t
